@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCrafters - Criação de Sites</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header e Navegação -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">WebCrafters</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#team">Equipe</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Seção Home -->
+    <section id="home" class="home">
+        <div class="container">
+            <div class="home-content fade-in">
+                <h1>Criamos Sites que Impressionam</h1>
+                <p>Dois profissionais apaixonados por transformar ideias em experiências digitais funcionais e memoráveis.</p>
+                <a href="#contact" class="cta-button">Solicite seu site</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre Nós -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">Sobre Nós</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>Somos dois iniciantes com uma paixão em comum: criar soluções digitais que fazem a diferença. Combinamos habilidades complementares para oferecer um serviço completo e personalizado.</p>
+                    <p>Com background em programação e marketing, entendemos tanto a parte técnica quanto a estratégica de um projeto, garantindo que seu site não apenas funcione perfeitamente, mas também alcance seus objetivos de negócio.</p>
+                    <p>Acreditamos que cada projeto é único e merece atenção especial, desde a concepção até a implementação final.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <!-- IMAGEM DA EQUIPE - SUBSTITUIR POR IMAGEM REAL -->
+                    <div class="placeholder-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Serviços -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Criação de Sites</h3>
+                    <p>Desenvolvemos sites responsivos e modernos, adaptados às necessidades do seu negócio e com foco na experiência do usuário.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Portfólios</h3>
+                    <p>Criamos portfólios online elegantes que destacam seu trabalho e habilidades, ajudando você a se conectar com oportunidades.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Landing Pages</h3>
+                    <p>Desenvolvemos páginas de conversão otimizadas para capturar leads e promover seus produtos ou serviços de forma eficaz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Equipe -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2 class="section-title fade-in">Nossa Equipe</h2>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">Marlon</h3>
+                    <p class="member-role">Programador</p>
+                    <p>Especialista em desenvolvimento front-end e back-end, com foco em criar soluções técnicas eficientes e escaláveis.</p>
+                    <div class="member-social">
+                        <a href="https://instagram.com/marlonflgodoi4" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">Pedro</h3>
+                    <p class="member-role">Especialista em Marketing</p>
+                    <p>Focado em estratégias digitais e experiência do usuário, garantindo que cada projeto atinja seus objetivos de negócio.</p>
+                    <div class="member-social">
+                        <a href="https://instagram.com/_pedrowzz_" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Entre em Contato</h2>
+            <div class="contact-form fade-in">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">WebCrafters</div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/marlonflgodoi4" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://instagram.com/_pedrowzz_" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 WebCrafters. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
