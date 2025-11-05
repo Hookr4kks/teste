@@ -1,6 +1,6 @@
 // ===== CONFIGURAÇÃO DO EMAILJS =====
 // 🔑 COLE SUA PUBLIC KEY DO EMAILJS AQUI:
-const EMAILJS_PUBLIC_KEY = "JRczV3-hcr2WhVwC1";
+const EMAILJS_PUBLIC_KEY = "user_JRczV3-hcr2WhVwC1";
 // 🔧 COLE SEU SERVICE ID DO EMAILJS AQUI:
 const EMAILJS_SERVICE_ID = "service_l3a75j9";
 // 📧 COLE SEU TEMPLATE ID DO EMAILJS AQUI:
@@ -221,5 +221,6 @@ if (typedText) {
     
     homeObserver.observe(document.querySelector('.home-content'));
 }
+
 
 
