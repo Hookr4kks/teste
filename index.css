@@ -287,8 +287,8 @@ header {
 }
 
 .member-photo img{
-    width: 145px;
-    height: 155px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin: 0 auto 20px;
     background-color: var(--border);
@@ -302,8 +302,8 @@ header {
 }
 
 .member-photob img{
-    width: 140px;
-    height: 155px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin: 0 auto 20px;
     background-color: var(--border);
@@ -549,4 +549,5 @@ footer {
         padding: 20px;
     }
 }
+
 
