@@ -79,14 +79,14 @@ fadeElements.forEach(element => {
     observer.observe(element);
 });
 
-// ===== FORMULÁRIO FUNCIONAL =====
+// ===== FORMULÁRIO SIMPLES (SEM EMAILJS) =====
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Validação básica
+    // Validação
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
@@ -101,45 +101,26 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
     
-    // Verificar se as keys estão configuradas
-    if (EMAILJS_PUBLIC_KEY.includes("SUA_PUBLIC_KEY") || 
-        EMAILJS_SERVICE_ID.includes("SEU_SERVICE_ID") || 
-        EMAILJS_TEMPLATE_ID.includes("SEU_TEMPLATE_ID")) {
-        showMessage('❌ Sistema em configuração. Por favor, nos chame diretamente pelo Instagram.', 'error');
-        return;
-    }
-    
-    // Mostrar loading
+    // Simular envio (sem EmailJS)
     const submitBtn = contactForm.querySelector('.submit-btn');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Enviando...';
     submitBtn.disabled = true;
     
-    // Dados para enviar
-    const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message,
-        to_name: "WebCrafters",
-        date: new Date().toLocaleString('pt-BR')
-    };
-    
-    // Enviar email usando EmailJS
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-    .then((response) => {
-        console.log('✅ Email enviado com sucesso:', response);
-        showMessage('🎉 Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.', 'success');
+    // Simular delay de envio
+    setTimeout(() => {
+        showMessage('✅ Mensagem simulada com sucesso! No site real, isso enviaria para nosso email.', 'success');
         contactForm.reset();
-    })
-    .catch((error) => {
-        console.error('❌ Erro ao enviar email:', error);
-        showMessage('😕 Erro ao enviar mensagem. Tente novamente ou nos chame no Instagram.', 'error');
-    })
-    .finally(() => {
-        // Restaurar botão
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    });
+        
+        // Opcional: Mostrar dados no console
+        console.log('📧 Mensagem que seria enviada:');
+        console.log('Nome:', name);
+        console.log('Email:', email);
+        console.log('Mensagem:', message);
+        
+    }, 1500);
 });
 
 function isValidEmail(email) {
@@ -152,15 +133,9 @@ function showMessage(text, type) {
     formMessage.className = 'form-message ' + type;
     formMessage.style.display = 'block';
     
-    // Rolagem suave para a mensagem
-    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    
-    // Auto-esconder após 5 segundos (apenas para sucesso)
-    if (type === 'success') {
-        setTimeout(() => {
-            formMessage.style.display = 'none';
-        }, 5000);
-    }
+    setTimeout(() => {
+        formMessage.style.display = 'none';
+    }, 5000);
 }
 
 // ===== SCROLL SUAVE =====
@@ -221,6 +196,7 @@ if (typedText) {
     
     homeObserver.observe(document.querySelector('.home-content'));
 }
+
 
 
 
