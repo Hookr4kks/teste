@@ -1,15 +1,39 @@
+// ===== CONFIGURAÇÃO DO EMAILJS =====
+// 🔑 COLE SUA PUBLIC KEY DO EMAILJS AQUI:
+const EMAILJS_PUBLIC_KEY = "user_JRczV3-hcr2WhVwC1";
+// 🔧 COLE SEU SERVICE ID DO EMAILJS AQUI:
+const EMAILJS_SERVICE_ID = "service_GnyRIB_ZJ_SzNWkhXdj_A";
+// 📧 COLE SEU TEMPLATE ID DO EMAILJS AQUI:
+const EMAILJS_TEMPLATE_ID = "template_rl3aygr";
+
 // ===== TOGGLE DO MODO CLARO/ESCURO =====
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = themeToggle.querySelector('i');
 
-// Verificar preferência salva ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
+    // Verificar tema salvo
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
     }
+    
+    // Inicializar EmailJS
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    
+    // Verificar se as keys foram configuradas
+    checkEmailJSConfig();
 });
+
+function checkEmailJSConfig() {
+    if (EMAILJS_PUBLIC_KEY.includes("SUA_PUBLIC_KEY") || 
+        EMAILJS_SERVICE_ID.includes("SEU_SERVICE_ID") || 
+        EMAILJS_TEMPLATE_ID.includes("SEU_TEMPLATE_ID")) {
+        console.warn("⚠️ Configure suas keys do EmailJS no script.js");
+    } else {
+        console.log("✅ EmailJS configurado corretamente");
+    }
+}
 
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
@@ -55,7 +79,7 @@ fadeElements.forEach(element => {
     observer.observe(element);
 });
 
-// ===== FORMULÁRIO DE CONTATO =====
+// ===== FORMULÁRIO FUNCIONAL =====
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
@@ -63,9 +87,9 @@ contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     // Validação básica
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
     
     if (!name || !email || !message) {
         showMessage('Por favor, preencha todos os campos.', 'error');
@@ -77,9 +101,45 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
     
-    // Simular envio
-    showMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-    contactForm.reset();
+    // Verificar se as keys estão configuradas
+    if (EMAILJS_PUBLIC_KEY.includes("SUA_PUBLIC_KEY") || 
+        EMAILJS_SERVICE_ID.includes("SEU_SERVICE_ID") || 
+        EMAILJS_TEMPLATE_ID.includes("SEU_TEMPLATE_ID")) {
+        showMessage('❌ Sistema em configuração. Por favor, nos chame diretamente pelo Instagram.', 'error');
+        return;
+    }
+    
+    // Mostrar loading
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+    
+    // Dados para enviar
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        message: message,
+        to_name: "WebCrafters",
+        date: new Date().toLocaleString('pt-BR')
+    };
+    
+    // Enviar email usando EmailJS
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then((response) => {
+        console.log('✅ Email enviado com sucesso:', response);
+        showMessage('🎉 Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.', 'success');
+        contactForm.reset();
+    })
+    .catch((error) => {
+        console.error('❌ Erro ao enviar email:', error);
+        showMessage('😕 Erro ao enviar mensagem. Tente novamente ou nos chame no Instagram.', 'error');
+    })
+    .finally(() => {
+        // Restaurar botão
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 });
 
 function isValidEmail(email) {
@@ -92,9 +152,15 @@ function showMessage(text, type) {
     formMessage.className = 'form-message ' + type;
     formMessage.style.display = 'block';
     
-    setTimeout(() => {
-        formMessage.style.display = 'none';
-    }, 5000);
+    // Rolagem suave para a mensagem
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Auto-esconder após 5 segundos (apenas para sucesso)
+    if (type === 'success') {
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    }
 }
 
 // ===== SCROLL SUAVE =====
@@ -127,3 +193,31 @@ window.addEventListener('scroll', () => {
         header.style.boxShadow = '0 2px 10px var(--shadow)';
     }
 });
+
+// ===== ANIMAÇÃO DE DIGITAÇÃO NO TITULO =====
+const typedText = document.querySelector('.home-content h1');
+if (typedText) {
+    const originalText = typedText.textContent;
+    typedText.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < originalText.length) {
+            typedText.textContent += originalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    
+    // Iniciar animação quando a seção home estiver visível
+    const homeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                typeWriter();
+                homeObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    homeObserver.observe(document.querySelector('.home-content'));
+}
