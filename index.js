@@ -1,10 +1,10 @@
 // ===== CONFIGURAÇÃO DO EMAILJS =====
 // 🔑 COLE SUA PUBLIC KEY DO EMAILJS AQUI:
-const EMAILJS_PUBLIC_KEY = "JRczV3-hcr2WhVwC11";
+const EMAILJS_PUBLIC_KEY = "JRczV3-hcr2WhVwC1";
 // 🔧 COLE SEU SERVICE ID DO EMAILJS AQUI:
-const EMAILJS_SERVICE_ID = "GnyRIB_ZJ_SzNWkhXdj_A";
+const EMAILJS_SERVICE_ID = "service_l3a75j9";
 // 📧 COLE SEU TEMPLATE ID DO EMAILJS AQUI:
-const EMAILJS_TEMPLATE_ID = "rl3aygr";
+const EMAILJS_TEMPLATE_ID = "template_rl3aygr";
 
 // ===== TOGGLE DO MODO CLARO/ESCURO =====
 const themeToggle = document.getElementById('themeToggle');
@@ -221,4 +221,5 @@ if (typedText) {
     
     homeObserver.observe(document.querySelector('.home-content'));
 }
+
 
